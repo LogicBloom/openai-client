@@ -1,4 +1,4 @@
-# chatterverse OpenAI API client
+# chatterverse_openai
 Welcome to the Chatterverse OpenAI API, a Rust library that provides a convenient way to interact with the OpenAI GPT-3 model for generating chat completions. This README will guide you through using this API to harness the power of the GPT-3 language model.
 
 ## Table of Contents
@@ -24,7 +24,7 @@ Add this library to your Cargo.toml file:
 
 ```toml
 [dependencies]
-chatterverse-openai = {git = "https://github.com/chatterverse-ai/openai-client.git"}
+chatterverse_openai = {git = "https://github.com/chatterverse-ai/openai-client.git"}
 ```
 
 ## Usage
