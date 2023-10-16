@@ -22,8 +22,8 @@ pub struct ChatCompletionsBuilder<'a> {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CompletionMessage {
-    role: CompletionRoles,
-    content: String,
+    pub role: CompletionRoles,
+    pub content: String,
 }
 
 impl CompletionMessage {
