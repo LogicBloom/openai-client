@@ -59,20 +59,17 @@ let client = Client::new(api_key)?;
 To generate chat completions, you can use the chat_completions method of the Client:
 
 ```rust
-let model = "gpt-3.5-turbo"; // The model you want to use
-let conversation = vec![
-    "User: What is the capital of France?",
-    "AI: The capital of France is Paris."
-];
+use chatterverse_openai::{Client, CompletionMessage, CompletionRoles};
 
-let response = client.chat_completions(model)
-    .messages(conversation)
-    .generate()
+let response = client.chat_completions("gpt-3.5-turbo")
+    .message(CompletionMessage::new(CompletionRole::Assistant, "Describe an itinerary for a 1 week trip to Japan."))
+    .temperature(1.0)
+    .send()
     .await?;
 
-println!("AI's response: {}", response.choices[0].text);
-Please refer to the chatterverse-openai documentation for more details and advanced usage.
+println!("AI's response: {}", response.choices[0].message.content);
 ```
+Please refer to the chatterverse-openai documentation for more details and advanced usage.
 
 ### Error Handling
 This library uses the [`anyhow`](https://github.com/chatterverse-ai/openai-client.git) crate for error handling. Errors are returned as OpenAiError types, which include detailed error messages to help you diagnose and fix issues that may arise during API interactions.
