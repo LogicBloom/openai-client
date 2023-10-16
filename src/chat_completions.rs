@@ -100,7 +100,8 @@ impl<'a> ChatCompletionsBuilder<'a> {
             .bearer_auth(&self.client.api_key)
             .json(&request_body)
             .send()
-            .await?;
+            .await?
+            .error_for_status()?;
         if !response.status().is_success() {
             let response = response.json::<OpenAiErrorResponse>().await?;
             return Err(response.into());
