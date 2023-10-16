@@ -23,6 +23,8 @@ impl<'a> Client {
             .user_agent(format!(
                 "chatterverse-openai-client@{CARGO_PACKAGE_VERSION}"
             ))
+            // XXX: temp fix for address unable to get local issuer certificate error
+            .danger_accept_invalid_certs(true)
             .build()
             .context("Failed to build http client")?;
         Ok(Self {
