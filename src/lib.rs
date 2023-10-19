@@ -13,6 +13,7 @@ const CARGO_PACKAGE_VERSION: &str = env!("CARGO_PKG_VERSION");
 #[derive(Debug, Clone)]
 pub struct Client {
     http_client: HttpClient,
+    // TODO: mask api key behind secrecy::Secret
     api_key: String,
 }
 
