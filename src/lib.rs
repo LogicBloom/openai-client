@@ -6,6 +6,7 @@ use chat_completions::ChatCompletionsBuilder;
 pub use chat_completions::{CompletionMessage, CompletionRoles};
 use error::OpenAiError;
 use reqwest::Client as HttpClient;
+use secrecy::Secret;
 
 /// Get current package version from metadata
 const CARGO_PACKAGE_VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -13,8 +14,7 @@ const CARGO_PACKAGE_VERSION: &str = env!("CARGO_PKG_VERSION");
 #[derive(Debug, Clone)]
 pub struct Client {
     http_client: HttpClient,
-    // TODO: mask api key behind secrecy::Secret
-    api_key: String,
+    api_key: Secret<String>,
 }
 
 impl<'a> Client {
@@ -30,7 +30,7 @@ impl<'a> Client {
             .context("Failed to build http client")?;
         Ok(Self {
             http_client,
-            api_key: api_key.into(),
+            api_key: Secret::new(api_key.into()),
         })
     }
 

@@ -1,3 +1,4 @@
+use secrecy::ExposeSecret;
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -97,7 +98,7 @@ impl<'a> ChatCompletionsBuilder<'a> {
             .client
             .http_client
             .post("https://api.openai.com/v1/chat/completions")
-            .bearer_auth(&self.client.api_key)
+            .bearer_auth(&self.client.api_key.expose_secret())
             .json(&request_body)
             .send()
             .await?
