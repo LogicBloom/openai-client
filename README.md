@@ -24,7 +24,7 @@ Add this library to your Cargo.toml file:
 
 ```toml
 [dependencies]
-chatterverse_openai = {git = "https://github.com/chatterverse-ai/openai-client.git"}
+chatterverse_openai = {git = "https://github.com/LogicBloom/openai-client.git"}
 ```
 
 ## Usage
